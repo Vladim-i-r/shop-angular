@@ -1,0 +1,49 @@
+<!-- <h2>Shopping Cart!</h2> -->
+
+<div class="card">
+    <div class="card-content">
+        <div class="card-header">
+            <h5 class="card-title">Shopping Cart!</h5>
+        </div>
+        <div class="card-body">
+            @if (items.length>0) {
+                
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                
+                        @for (item of items; track $index) {
+                            <tr>
+                                <td>{{item.product.name}}</td>
+                                <td>{{item.product.price}}</td>
+                                <td>{{item.quantity}}</td>
+                                <td>{{item.product.price * item.quantity}}</td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm" (click)="onDeleteCart(item.product.id)">Delete</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="text-end fw-bold" colspan="4">Total</td>
+                            <td class="text-start fw-bold" colspan="1"> {{total}} </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            } @else {
+                <div class="alert alert-warning">There are no items to show in the shopping cart!</div>
+            }
+            
+        </div>
+    </div>
+</div>
+
